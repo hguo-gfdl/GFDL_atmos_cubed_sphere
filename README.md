@@ -1,8 +1,6 @@
 # GFDL_atmos_cubed_sphere
 
-The source contained herein reflects the 202107 release of the Finite Volume Cubed-Sphere Dynamical Core (FV3) from GFDL
-
-The GFDL Microphysics is also available within this repository.
+The source contained herein merges in the [2021 January Release](https://github.com/NOAA-GFDL/GFDL_atmos_cubed_sphere/releases/tag/FV3-202101-public) of the Finite Volume Cubed-Sphere Dynamical Core (FV3) for use in the current GFDL models (AM4/CM4/ESM4/SPEAR).
 
 # Where to find information
 
@@ -34,6 +32,13 @@ The top level directory structure groups source code and input files as follow:
 | ```tools/```         | contains source code of tools used within the core |
 | ```GFDL_tools/```    | contains source code of tools specific to GFDL models |
 | ```docs/```          | contains documentation for the FV3 dynamical core, and Python notebooks demonstrating basic capabilities. |
+
+# Dependencies
+
+The source code in this repository requires other NOAA-GFDL projects in
+order to compile.  As stated above, this branch is for use with the current
+NOAA-GFDL/AM4 and NOAA-GFDL/CM4 projects and is included as a submodule within
+those projects.
 
 # Disclaimer
 

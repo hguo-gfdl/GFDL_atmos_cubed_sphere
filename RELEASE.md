@@ -1,11 +1,10 @@
+# RELEASE NOTES for GFDL FV3: Summary
 
-# RELEASE NOTES for FV3 202107: Summary
+# RELEASE NOTES for GFDL_2021.03.01: Summary
+GFDL_2021.03.01 --- August 2021
 
-FV3-202107-public --- 08 July 2021
-Lucas Harris, GFDL lucas.harris@noaa.gov
-
-This version has been tested against the current SHiELD physics
-and with FMS release 2021.02 from https://github.com/NOAA-GFDL/FMS
+This version has been tested within the current GFDL Models (AM4+, CM4+, ESM4+, SPEAR, etc.) and requires a
+release of the [FMS infrastructure](https://github.com/NOAA-GFDL/FMS) 2021.03 or greater.
 
 This release includes the following:
 
@@ -18,15 +17,13 @@ This release includes the following:
 - Other updates and general cleanup
 
 
-# RELEASE NOTES for FV3 202101: Summary
+# RELEASE NOTES for GFDL_2021.01: Summary
+GFDL_2021.01 --- April 2021
 
-FV3-202101-public --- 22 January 2021
-Lucas Harris, GFDL <lucas.harris@noaa.gov>
+This version has been tested within the current GFDL Models (AM4+, CM4+, ESM4+, SPEAR, etc.) and requires a
+release of the [FMS infrastructure](https://github.com/NOAA-GFDL/FMS) newer than 2020.02.
 
-This version has been tested against the current SHiELD (formerly fvGFS) physics
-and with FMS release candidate 2020.04 from https://github.com/NOAA-GFDL/FMS
-
-This release includes the following:
+Includes all of the features from the [202101 Public Release](https://github.com/NOAA-GFDL/GFDL_atmos_cubed_sphere/releases/tag/FV3-202101-public) which include:
 
 - Positive-definite advection scheme
 - In-line GFDL Microphysics
@@ -39,39 +36,30 @@ This release includes the following:
 
 This version of FV3 is described as component of SHiELD in Harris et al. (2020, JAMES).
 
-## Interface changes in 202101
 
-atmosphere.F90: if using the in-line GFDL microphysics the precipitation rates (available in the structure Atm%inline_mp for rain, ice, snow, and graupel separately) must be passed into the physics and/or land model as appropriate. Here we demonstrate how to do this in SHiELD by copying them into IPD_Data(nb)%Statein%prep (and so on), which are newly defined in the IPD_Data structure within the SHiELD physics.
+# RELEASE NOTES for 2020.02: Summary
+2020.02 --- 22 April 2020
 
+This version has been tested within current GFDL Models (AM4+, CM4+, ESM4+, SPEAR, etc.) and requires the 2020.02 release of the [FMS infrastructure](https://github.com/NOAA-GFDL/FMS).
 
-# RELEASE NOTES for FV3 201912: Summary
+Includes all of the features from the [201912 Public Release](https://github.com/NOAA-GFDL/GFDL_atmos_cubed_sphere/releases/tag/201912_public_release) which include:
 
-FV3-201912-public --- 10 January 2020
-Lucas Harris, GFDL <lucas.harris@noaa.gov>
-
-This version has been tested against the current SHiELD (formerly fvGFS) physics
-and with FMS release candidate 2020.02 from https://github.com/NOAA-GFDL/FMS
-
-Includes all of the features of the GFDL Release to EMC, as well as:
-
-- Updated 2017 GFDL Microphysics (S-J Lin and L Zhou included in GFSv15)
-- Updates for GFSv15 ICs (T Black/J Abeles, EMC)
-- Updates to support new nesting capabilities in FMS (Z Liang)
+- Updates to support new nesting capabilities in FMS
 - Re-written grid nesting code for efficiency and parallelization
 - Re-organized fv_eta for improved vertical level selection
-- 2018 Stand-alone regional capabilities (T Black/J Abeles, EMC)
+- 2018 Stand-alone regional capabilities (from EMC)
 - Refactored model front-end (fv_control, fv_restart)
 - Support for point soundings
+- full non-hydrostatic capability is now included as a runtime option
 - And other updates
 
-## Interface changes
+# Directory structure changes in 2020.02
 
-drivers: renamed 'fvGFS' directory to SHiELD
+***drivers/***  (important for those moving from the GFDL internal project)
+  - renamed ***fvGFS*** to ***SHiELD***
+  - renamed ***coupled*** to ***GFDL***
 
-atmosphere.F90: 'mytile' is renamed 'mygrid'
+***model_nh_null/***
+  - has been removed
 
-The non-functional gfdl_cloud_microphys.F90 has been removed and replaced with the 2017 public release given to EMC. Also added a proper initialization routine, that includes the use of INTERNAL_FILE_NML and thereby requires the input_nml_file argument. If you do not define the compiler flag INTERNAL_FILE_NML then you can delete this argument.
-
-The namelist nggps_diag_nml has been eliminated. 'fdiag' is no longer handled by the dynamical core, and should be handled by the physics driver.
-
-For a complete technical description see the NOAA Technical Memorandum OAR GFDL: https://repository.library.noaa.gov/view/noaa/23432
+Update your build system as appropriate

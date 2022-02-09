@@ -979,8 +979,10 @@
 !    endif
         call fv_tp_2d(pt, crx_adv,cry_adv, npx, npy, hord_tm, gx, gy,  &
                       xfx_adv,yfx_adv, gridstruct, bd, ra_x, ra_y, flagstruct%lim_fac, &
-                      mfx=fx, mfy=fy, mass=delp, nord=nord_v, damp_c=damp_v)
-!                     mfx=fx, mfy=fy, mass=delp, nord=nord_t, damp_c=damp_t)
+! This is a difference from the publicly released version in github master
+! and is provided to ensure reproducibility with AM4/CM4 models from GFDL
+!                     mfx=fx, mfy=fy, mass=delp, nord=nord_v, damp_c=damp_v)
+                      mfx=fx, mfy=fy, mass=delp, nord=nord_t, damp_c=damp_t)
 #endif
 
      if ( inline_q ) then
